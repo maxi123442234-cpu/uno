@@ -56,9 +56,38 @@
   "edge_side_panel": {
     "preferred_width": 480
   },
-  "widgets": [],
-  "file_handlers": [],
-  "protocol_handlers": [],
+  "widgets": [
+    {
+      "name": "UNO Progress",
+      "tag": "uno-widget",
+      "template": "widget-template",
+      "ms_ac_template": "widget-template.json",
+      "data": "widget-data.json",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "screenshot1.png",
+          "sizes": "1280x720",
+          "type": "image/png",
+          "label": "Widget preview"
+        }
+      ]
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "/",
+      "accept": {
+        "application/vnd.uno+zip": [".uno"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+uno",
+      "url": "/?type=%s"
+    }
+  ],
   "note_taking": {
     "new_note_url": "/"
   },
