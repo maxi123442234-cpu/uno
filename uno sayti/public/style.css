@@ -1,0 +1,524 @@
+:root {
+    --primary: #f56462;
+    --yellow: #f5d142;
+    --green: #5bc957;
+    --blue: #429af5;
+    --dark: #0f0f13;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+}
+
+body {
+    background: var(--dark);
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Animated Background Shapes */
+.bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.bg-teal {
+    width: 400px;
+    height: 400px;
+    background: #00f2ff;
+    top: -100px;
+    left: -100px;
+}
+
+.bg-purple {
+    width: 500px;
+    height: 500px;
+    background: #7000ff;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: -5s;
+}
+
+.bg-primary {
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: drift 15s infinite linear;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.1); }
+}
+
+@keyframes drift {
+    from { transform: translate(-50%, -50%) rotate(0deg) translate(200px) rotate(0deg); }
+    to { from { transform: translate(-50%, -50%) rotate(360deg) translate(200px) rotate(-360deg); } }
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+#authScreen, #lobby {
+    justify-content: center;
+    align-items: center;
+}
+
+.glass-panel {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-panel:hover {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+
+.auth-panel {
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+}
+
+.c-red { color: var(--primary); }
+.c-yellow { color: var(--yellow); }
+.c-green { color: var(--green); }
+.c-blue { color: var(--blue); }
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 14px 20px;
+    margin-bottom: 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--yellow);
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(245, 209, 66, 0.2);
+}
+
+.primary-btn, .secondary-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 12px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary), var(--yellow));
+    box-shadow: 0 4px 15px rgba(245, 100, 98, 0.3);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(245, 100, 98, 0.5);
+}
+
+.primary-btn:active { transform: translateY(-1px); }
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Game Area */
+#gameScreen { flex-direction: row; }
+#game-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+    position: relative;
+}
+
+#chat-area {
+    width: 320px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.chat-header {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--yellow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-right: 5px;
+}
+
+#chat-messages::-webkit-scrollbar { width: 4px; }
+#chat-messages::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+
+.chat-msg {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    border-left: 3px solid var(--blue);
+    animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Opponents */
+#opponents {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-height: 100px;
+}
+
+.opponent {
+    background: var(--glass);
+    padding: 10px 20px;
+    border-radius: 16px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    min-width: 120px;
+}
+
+.opponent.active-turn {
+    border-color: var(--yellow);
+    box-shadow: 0 0 20px rgba(245, 209, 66, 0.4);
+    transform: scale(1.1) translateY(5px);
+}
+
+.opp-name { font-weight: 700; margin-bottom: 4px; }
+.opp-cards { font-size: 0.85rem; color: #ccc; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 2px 8px; }
+
+/* Table */
+#center-table {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    perspective: 1000px;
+}
+
+/* Card Design Overhaul */
+.uno-card {
+    position: relative;
+    width: 110px;
+    height: 165px;
+    background: #fff;
+    padding: 6px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+}
+
+/* Color Picker */
+#color-picker { 
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500; 
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(15, 15, 19, 0.95);
+    border: 2px solid var(--yellow);
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+.color-options { display: flex; gap: 15px; }
+.color-btn { 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    border: 3px solid rgba(255,255,255,0.8);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4); 
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.color-btn:hover { transform: scale(1.15); box-shadow: 0 8px 25px rgba(0,0,0,0.6); }
+.color-btn.red { background: var(--primary); }
+.color-btn.green { background: var(--green); }
+.color-btn.blue { background: var(--blue); }
+.color-btn.yellow { background: var(--yellow); }
+
+.hidden { display: none !important; }
+
+.uno-card .inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card Front Backgrounds */
+.uno-card.red .inner { background: #f56462; }
+.uno-card.green .inner { background: #5bc957; }
+.uno-card.blue .inner { background: #429af5; }
+.uno-card.yellow .inner { background: #f5d142; }
+.uno-card.black .inner { background: #000; }
+
+/* The White Oval for Front */
+.uno-card:not(.card-back):not(.empty) .inner::before {
+    content: '';
+    position: absolute;
+    width: 130%;
+    height: 75%;
+    background: #fff;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+    z-index: 1;
+}
+
+/* Center Value: Color matches background */
+.uno-card .center-val {
+    font-size: 4rem;
+    font-weight: 900;
+    z-index: 2;
+    transition: color 0.3s;
+}
+
+.uno-card.red .center-val { color: #f56462; }
+.uno-card.green .center-val { color: #5bc957; }
+.uno-card.blue .center-val { color: #429af5; }
+.uno-card.yellow .center-val { color: #e6b800; } /* Slightly darker for contrast on white */
+.uno-card.black .center-val { color: #fff; font-size: 2rem;}
+
+.uno-card .corner {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+    z-index: 3;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.uno-card .top-left { top: 8px; left: 10px; }
+.uno-card .bottom-right { bottom: 8px; right: 10px; transform: rotate(180deg); }
+
+/* Card Back Design */
+.uno-card.card-back .inner {
+    background: #000;
+}
+
+/* Red oval for back */
+.uno-card.card-back .inner::before {
+    content: '';
+    position: absolute;
+    width: 130%;
+    height: 75%;
+    background: #f56462;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+    z-index: 1;
+    border: 3px solid #fff;
+}
+
+.uno-card.card-back .center-val {
+    color: #f5d142;
+    font-size: 2.5rem;
+    transform: rotate(-20deg);
+    text-shadow: 2px 2px 0px #000, -1px -1px 0px #fff;
+    z-index: 2;
+}
+
+.uno-card.empty .inner { background: rgba(255,255,255,0.05); }
+.uno-card.empty .center-val { color: #444; font-size: 1.5rem; }
+
+/* Card Animations */
+@keyframes dealCard {
+    from { transform: translateY(200px) rotate(20deg); opacity: 0; }
+    to { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+.card-entering {
+    animation: dealCard 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+#player-hand {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: -40px;
+    padding: 20px;
+    height: 200px;
+    margin-top: auto;
+}
+
+#player-hand .uno-card {
+    margin-left: -50px;
+    transform: rotate(calc(var(--rot) * 1deg)) translateY(calc(var(--y) * 1px));
+}
+
+#player-hand .uno-card:hover {
+    transform: translateY(-80px) scale(1.3) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+/* Status Panel & Turn Indicator */
+#status-panel {
+    background: var(--glass);
+    padding: 12px 28px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s;
+}
+
+@keyframes breathing {
+    0% { box-shadow: 0 0 10px rgba(245, 209, 66, 0.2); transform: scale(1); }
+    100% { box-shadow: 0 0 30px rgba(245, 209, 66, 0.6); transform: scale(1.05); }
+}
+
+.my-turn {
+    animation: breathing 1.5s infinite alternate ease-in-out;
+    border-color: var(--yellow) !important;
+}
+
+
+/* Chat Setup */
+#chatToggleBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    display: none;
+}
+
+#chatToggleBtn:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #gameScreen { flex-direction: column; }
+    #chatToggleBtn { display: block; }
+    
+    #chat-area {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        margin: 0;
+        background: rgba(15, 15, 19, 0.98);
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 0;
+    }
+    #chat-area.open { right: 0; }
+    .uno-card { width: 80px; height: 120px; }
+    #player-hand { height: 160px; }
+    
+    .mobile-hidden { display: none !important; }
+}
+

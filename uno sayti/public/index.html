@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UNO Multiplayer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="bg-shape bg-teal"></div>
+    <div class="bg-shape bg-purple"></div>
+    <div class="bg-shape bg-primary"></div>
+
+    <!-- AUTH SCREEN -->
+    <div id="authScreen" class="screen active">
+        <div class="glass-panel auth-panel">
+            <h1 class="title"><span class="c-red">U</span><span class="c-yellow">N</span><span class="c-green">O</span></h1>
+            <h3 id="authTitle">Kirish</h3>
+            
+            <input type="text" id="authUsername" placeholder="Ism (Username)" autocomplete="off">
+            <input type="password" id="authPassword" placeholder="Parol" autocomplete="off">
+            
+            <button id="loginBtn" class="primary-btn">Hisobga Kirish</button>
+            <button id="registerBtn" class="secondary-btn">Ro'yxatdan O'tish</button>
+            
+            <div id="authMsg" class="msg-box"></div>
+        </div>
+    </div>
+
+    <!-- LOBBY SCREEN -->
+    <div id="lobby" class="screen">
+        <div class="glass-panel">
+            <h1 class="title"><span class="c-red">U</span><span class="c-yellow">N</span><span class="c-green">O</span></h1>
+            <div style="text-align:center; margin-bottom:1rem;">
+                Xush kelibsiz, <strong id="loggedInUser" class="c-yellow"></strong>!
+            </div>
+            <input type="text" id="roomName" placeholder="Xona kodi (Room Code)" autocomplete="off">
+            <button id="joinBtn" class="primary-btn">Xonaga Qo'shilish</button>
+        </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="gameScreen" class="screen">
+        <!-- Chat Toggle for Mobile -->
+        <button id="chatToggleBtn">💬 Chat</button>
+
+        <div id="game-area">
+            <div id="opponents">
+                <!-- Opponents info -->
+            </div>
+            
+            <div id="center-table">
+                <div id="draw-pile" class="uno-card card-back">
+                    <div class="inner"><span class="center-val">UNO</span></div>
+                </div>
+                <div id="discard-pile" class="uno-card empty">Bo'sh</div>
+                
+                <div id="color-picker" class="hidden glass-panel">
+                    <div class="color-options">
+                        <div class="color-btn red" data-color="red"></div>
+                        <div class="color-btn green" data-color="green"></div>
+                        <div class="color-btn blue" data-color="blue"></div>
+                        <div class="color-btn yellow" data-color="yellow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="player-area">
+                <div id="status-panel" class="glass-panel">
+                    <span id="status-text">Kutilmoqda...</span>
+                    <button id="startBtn" class="primary-btn hidden">Boshlash</button>
+                </div>
+                <div id="player-hand" class="hand">
+                    <!-- Cards -->
+                </div>
+            </div>
+        </div>
+
+        <div id="chat-area" class="glass-panel mobile-hidden">
+            <div class="chat-header">Jonli Chat <button id="closeChatBtn" class="close-btn mobile-only">X</button></div>
+            <div id="chat-messages"></div>
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Xabar..." autocomplete="off">
+                <button id="sendBtn" class="primary-btn">></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
