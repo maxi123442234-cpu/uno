@@ -27,5 +27,15 @@
       "label": "UNO Game Play"
     }
   ],
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Yangi o'yin",
+      "short_name": "O'yin",
+      "description": "Tezkor yangi o'yin boshlash",
+      "url": "/",
+      "icons": [{ "src": "icon.png", "sizes": "512x512" }]
+    }
+  ]
 }
