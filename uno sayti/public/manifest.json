@@ -52,5 +52,23 @@
     "client_mode": "navigate-existing"
   },
   "handle_links": "auto",
-  "display_override": ["standalone", "window-controls-overlay"]
+  "display_override": ["standalone", "window-controls-overlay"],
+  "edge_side_panel": {
+    "preferred_width": 480
+  },
+  "widgets": [],
+  "file_handlers": [],
+  "protocol_handlers": [],
+  "note_taking": {
+    "new_note_url": "/"
+  },
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }
