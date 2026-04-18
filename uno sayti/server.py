@@ -5,6 +5,11 @@ import sqlite3
 import hashlib
 import json
 import os
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 sio = socketio.AsyncServer(async_mode='aiohttp', cors_allowed_origins='*')
 app = web.Application()
@@ -299,4 +304,5 @@ app.router.add_static('/', PUBLIC_DIR)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 3000))
+    logger.info(f"Server starting on port {port}")
     web.run_app(app, host='0.0.0.0', port=port)
