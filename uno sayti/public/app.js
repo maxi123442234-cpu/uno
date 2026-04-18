@@ -1,5 +1,14 @@
 const socket = io();
 
+// Service Worker Registration for PWA/APK
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW Registered!', reg))
+            .catch(err => console.log('SW Registration Failed:', err));
+    });
+}
+
 // DOM Elements
 const screens = {
     auth: document.getElementById('authScreen'),

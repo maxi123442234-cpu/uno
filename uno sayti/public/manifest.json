@@ -1,0 +1,18 @@
+{
+  "name": "UNO Multiplayer",
+  "short_name": "UNO",
+  "description": "Eng zo'r multiplayer UNO o'yini",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0C29",
+  "theme_color": "#6A11CB",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "orientation": "portrait"
+}
