@@ -24,7 +24,14 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "UNO Game Play"
+      "label": "UNO Game Play Desktop"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "UNO Game Play Mobile"
     }
   ],
   "orientation": "portrait",
@@ -37,5 +44,13 @@
       "url": "/",
       "icons": [{ "src": "icon.png", "sizes": "512x512" }]
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "iarc_rating_id": "e58df634-1111-447a-8b82-263a44781442",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "handle_links": "auto",
+  "display_override": ["standalone", "window-controls-overlay"]
 }
