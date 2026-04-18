@@ -1,17 +1,30 @@
 {
-  "name": "UNO Multiplayer",
+  "name": "UNO Multiplayer Online",
   "short_name": "UNO",
-  "description": "Eng zo'r multiplayer UNO o'yini",
+  "description": "Eng zo'r va hayajonli multiplayer UNO o'yini. Do'stlaringiz bilan onlayn o'ynang va g'olib bo'ling!",
   "start_url": "/",
+  "id": "/?source=pwa",
   "display": "standalone",
   "background_color": "#0F0C29",
   "theme_color": "#6A11CB",
+  "lang": "uz",
+  "dir": "ltr",
+  "categories": ["games", "entertainment"],
   "icons": [
     {
       "src": "icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "UNO Game Play"
     }
   ],
   "orientation": "portrait"
