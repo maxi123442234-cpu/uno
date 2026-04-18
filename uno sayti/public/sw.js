@@ -5,7 +5,7 @@ const ASSETS = [
   '/style.css',
   '/app.js',
   '/manifest.json',
-  '/icon.png'
+  '/icon.jpg'
 ];
 
 self.addEventListener('install', (event) => {
